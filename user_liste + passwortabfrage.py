@@ -1,7 +1,8 @@
 user_login = [
     {"username": "jan_scheffelmeier",
      "mail_adresse": "jan_scheffelmeier@hvf.de",
-     "passwort": "JanScheffelmeier"
+     "passwort": "JanScheffelmeier",
+     "gesperrt": False
     },
     {"username": "robin_hospotzky",
      "mail_adresse": "robin_hospotzky@hvf.de",
