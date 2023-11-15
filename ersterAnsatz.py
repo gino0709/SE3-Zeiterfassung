@@ -47,14 +47,16 @@ class Nutzer:
             "Username": nutzer._Nutzer__username,
             "Password": nutzer._Nutzer__password,
             "Sperrung": nutzer._Nutzer__sperrung,
-            "Zeiterfassung": nutzer.zeiterfassung.zeiten  # Hier wird nur die Zeiterfassung gespeichert, nicht das gesamte Objekt
-        }
-        nutzer_liste.append(nutzer_info)
+            "Zeiterfassung": nutzer.zeiterfassung.zeiten         # hier wird nur die Zeiterfassung gespeichert, nicht das gesamte Objekt
+            }
+            nutzer_liste.append(nutzer_info)
+        with open("nutzerDatenbank.json", "w") as datei:
+            json.dump(nutzer_liste, datei, indent=2)
 
 tomMustermann = Nutzer("einfache Anwender", 1001, "tom.mustermann@test.de", "tomM", "pw123")
 laraMeier = Nutzer("VIP Anwender", 1002, "lara.meier@test.de", "laraM", "pw456")
 
 tomMustermann.neueBuchung("15.11.2023", "1 Stunde", "Wohnung geputzt")
+laraMeier.neueBuchung("10.11.2023", "3 Stunden", "Essen gekocht")
 
-with open("nutzerDatenbank.json", "w") as datei:
-    datei.write(json.dumps(Nutzer.speichereNutzerInDieJsonDatei()))
+Nutzer.speichereNutzerInDieJsonDatei()
