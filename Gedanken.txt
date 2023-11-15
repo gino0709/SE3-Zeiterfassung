@@ -1,0 +1,57 @@
+"""
+Punkt 1:
+mitarbeiter_datenbank = [
+{
+        "mail": "max.mustermann@test.de"
+        "username": "mustermann.max"
+        "pw": "passwort123"
+        "status": "anwenderEinfach"
+    },
+{
+        .....
+    }
+]
+
+Punkt 2:
+zeiterfassungen_modul = [
+    {
+        "personalNr": 123
+        "arbeitszeit": 0
+        "datum": ["22.10.2023", "25.10.2023"]
+        "bericht": ["text1", "text2"]
+    }
+]
+
+Punkt 3:
+
+class AnwenderEinfach:
+
+class AnwenderVip:
+
+class Administrator:
+
+Punkt 4: 
+Paulin: besprechen, ob unsere Lösung in Ordnung geht (händische Registratur durch Admins)
+
+Punkt 5:
+5.1 auf json von Punkt 2 zugreifen
+5.2 antrag geht über text-datei ein & admin ändert status auf anwenderVip
+
+Punkt 6: (Paulin: welche Daten sollen hier hoch-, bzw. heruntergeladen werden?)
+6.1 Download zur Verfügung stellen 
+6.2 Upload zur Verfügung stellen 
+6.3 antrag geht über text-datei ein & admin ändert status auf admin
+
+Punkt 7:
+7.1 Paulin: näher erläutern!
+7.2 gegenpart zu 5.2
+7.3 gegenpart 6.3
+7.4 zeige alle verfügbaren objekte anwenderEinfach / anwenderVIP
+7.5 class GesperrteNutzer (pw ändern ;-))
+
+Punkt 8:
+json-Datei mit den modulen auswerten & strukturiert ausgeben lassen
+
+
+
+"""
