@@ -1,16 +1,5 @@
 [
   {
-    "Rolle": "einfache Anwender",
-    "Mail": "tom.mustermann@test.de",
-    "Password": "pw123",
-    "Sperrung": false,
-    "Zeiterfassung": {
-      "15.11.2023": {
-        "Wohnung geputzt": "1 Stunde"
-      }
-    }
-  },
-  {
     "Rolle": "VIP Anwender",
     "Mail": "lara.meier@test.de",
     "Password": "pw456",
@@ -18,6 +7,21 @@
     "Zeiterfassung": {
       "10.11.2023": {
         "Essen gekocht": "3 Stunden"
+      }
+    }
+  },
+  {
+    "Rolle": "einfache Anwender",
+    "Mail": "tom.mustermann@test.de",
+    "Password": "pw123",
+    "Sperrung": false,
+    "Zeiterfassung": {
+      "15.11.2023": {
+        "Wohnung geputzt": "1 Stunde",
+        "Gartenarbeit": "4 Stunden"
+      },
+      "20.11.2023": {
+        "Fenster geputzt": "3 Stunden"
       }
     }
   }
