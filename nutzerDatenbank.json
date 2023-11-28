@@ -1,27 +1,27 @@
 [
   {
-    "Rolle": "einfache Anwender",
-    "NutzerId": 1001,
-    "Mail": "tom.mustermann@test.de",
-    "Username": "tomM",
-    "Password": "pw123",
-    "Sperrung": false,
-    "Zeiterfassung": {
-      "15.11.2023": {
-        "1 Stunde": "Wohnung geputzt"
-      }
-    }
-  },
-  {
     "Rolle": "VIP Anwender",
-    "NutzerId": 1002,
     "Mail": "lara.meier@test.de",
-    "Username": "laraM",
     "Password": "pw456",
     "Sperrung": false,
     "Zeiterfassung": {
       "10.11.2023": {
-        "3 Stunden": "Essen gekocht"
+        "Essen gekocht": "3 Stunden"
+      }
+    }
+  },
+  {
+    "Rolle": "einfache Anwender",
+    "Mail": "tom.mustermann@test.de",
+    "Password": "pw123",
+    "Sperrung": false,
+    "Zeiterfassung": {
+      "15.11.2023": {
+        "Wohnung geputzt": "1 Stunde",
+        "Gartenarbeit": "4 Stunden"
+      },
+      "20.11.2023": {
+        "Fenster geputzt": "3 Stunden"
       }
     }
   }
