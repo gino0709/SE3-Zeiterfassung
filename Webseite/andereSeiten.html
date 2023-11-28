@@ -1,0 +1,66 @@
+<!-- Für Server einfügen: {% load static %} -->
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0">
+        <title>Projekt Zeiterfassung</title>
+        <link rel="icon" type="image/png" href="./favicon.png">
+        <link rel="stylesheet" href="./styles.css"> <!-- Für Server einfügen: <link rel="stylesheet" href="{% static '/styles.css' %}"> -->
+        <script type="text/javascript">
+            /* Hier kann javascript geschrieben werden */
+        </script>
+    </head>
+    <body>
+<!-- Header -->
+        <header style="align-items: left;">  
+            <!--Seitenlogo-->
+            <div>
+                <img class="logo" src="./logo.png"> <!-- Für Server einfügen: <img class="logo" src="{% static 'logo.png' %}"> -->            
+            </div>
+            <div class="navigation" style="position: sticky; top: 0;">
+                <ul>
+                  <li><a href="./index.html">Startseite</a></li>
+                  <li><a href="./sites/project.html">Projektunterlagen</a></li> 
+                  <li class="dropdown"><a href="javascript:void(0)" class="dropdown_headline">Coachings</a>
+                    <div class="dropdown_content">
+                      <a href="./sites/tdd.html">Modulgruppe 1: Technische Dimension der Digitalisierung (Paulin)</a>
+                      <a href="./sites/management.html">Modulgruppe 2: Verwaltungsmanagement (Schenk)</a>
+                      <a href="./sites/rights.html">Modulgruppe 3: Rechtliche Grundlagen der öffentlichen Verwaltung (Klink-Straub)</a>
+                      <a href="./sites/leadership.html">Modulgruppe 4: Digital Leadership (Schneider)</a>
+                    </div>
+                  </li>                
+                </ul>
+              </div>
+        </header>
+<!-- Middle -->
+        <div class="content-container" name="anmelden">
+            <p>Sie sind bereits</p>
+            <form method="post">
+                <!-- Für Server einfügen: {% csrf_token %} -->             
+                <label for="Amail">E-Mail</label>
+                <input name="Amail" type="text"/>
+                <label for="pw">Passwort</label>
+                <input name="pw" type="password"/>
+                <button type="submit" name="bestätigen" value="anmelden">Anmelden</button>
+            </form>
+        </div>
+        <div class="content-container" name="registrieren">
+            <form method="post">
+                <!-- Für Server einfügen: {% csrf_token %} --> 
+                <label for="Rmail">E-Mail</label>
+                <input name="Rmail" type="text"/>
+                <label for="pw">Passwort</label>
+                <input name="pw" type="password"/>
+                <label for="pwBestätigen">Passwort bestätigen</label>
+                <input name="pwBestätigen" type="password"/>
+                <button type="submit" name="bestätigen" value="registrieren">Registrieren</button> 
+            </form>
+        </div>
+<!-- Footer -->
+        <footer>
+            <p>&copy All Rights Reserved by Jan Scheffelmeier</p>
+            <p>Kontaktieren Sie mich unter: <a style="color: aliceblue" href="mailto:scheffelmeier_jan@teams.hs-ludwigsburg.de">Scheffelmeier_Jan@teams.hs-ludwigsburg.de</a></p>
+        </footer>
+    </body>
+</html>
