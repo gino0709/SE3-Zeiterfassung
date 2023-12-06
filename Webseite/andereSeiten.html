@@ -1,4 +1,4 @@
-<!-- Für Server einfügen: {% load static %} -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -6,17 +6,21 @@
         <meta name="viewport" content="width=device-width, inital-scale=1.0">
         <title>Projekt Zeiterfassung</title>
         <link rel="icon" type="image/png" href="./favicon.png">
-        <link rel="stylesheet" href="./styles.css"> <!-- Für Server einfügen: <link rel="stylesheet" href="{% static '/styles.css' %}"> -->
+        <link rel="stylesheet" href="{% static '/styles.css' %}">
         <script type="text/javascript">
             /* Hier kann javascript geschrieben werden */
         </script>
+        <!-- "COOKIE" --> 
+        <form method="post">
+            <input name="keksHtml" type="hidden" value="{{ keks }}">
+        </form>
     </head>
     <body>
 <!-- Header -->
         <header style="align-items: left;">  
             <!--Seitenlogo-->
             <div>
-                <img class="logo" src="./logo.png"> <!-- Für Server einfügen: <img class="logo" src="{% static 'logo.png' %}"> -->            
+                <img class="logo" src="{% static 'logo.png' %}">           
             </div>
             <div class="navigation" style="position: sticky; top: 0;">
                 <ul>
@@ -34,29 +38,48 @@
               </div>
         </header>
 <!-- Middle -->
-        <div class="content-container" name="anmelden">
-            <p>Sie sind bereits</p>
-            <form method="post">
-                <!-- Für Server einfügen: {% csrf_token %} -->             
-                <label for="Amail">E-Mail</label>
-                <input name="Amail" type="text"/>
-                <label for="pw">Passwort</label>
-                <input name="pw" type="password"/>
-                <button type="submit" name="bestätigen" value="anmelden">Anmelden</button>
-            </form>
-        </div>
-        <div class="content-container" name="registrieren">
-            <form method="post">
-                <!-- Für Server einfügen: {% csrf_token %} --> 
-                <label for="Rmail">E-Mail</label>
-                <input name="Rmail" type="text"/>
-                <label for="pw">Passwort</label>
-                <input name="pw" type="password"/>
-                <label for="pwBestätigen">Passwort bestätigen</label>
-                <input name="pwBestätigen" type="password"/>
-                <button type="submit" name="bestätigen" value="registrieren">Registrieren</button> 
-            </form>
-        </div>
+        <form method="post">
+            {% csrf_token %}
+            <select>
+                <option name="filterTag">Alle Tage</option>
+                {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}
+                    <option name="filterTag">{{ tag }}</option>    
+                {% endfor %}
+            </select>
+            <select>
+                <option name="filterModul">Alle Module</option>
+                {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}
+                    {% for modul, listeMitDict in dictMitKeyModuleUndWertListe.items %}
+                        <option name="filterModul">{{ modul }}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+            <button type="submit">Filtern</button>
+        {% csrf_token %}
+        </form>
+        <table style="border: 2px solid black; margin: 50px">
+            <tr style="border: 2px solid black">
+                <th>Datum</th>
+                <th>Modul</th>
+                <th>Arbeitszeit</th>
+                <th>Bericht</th>
+            </tr>
+            {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}
+                {% for modul, listeMitDict in dictMitKeyModuleUndWertListe.items %}
+                    {% for listeneintrag in listeMitDict %}
+                        <tr style="border: 2px solid black">
+                            <td>{{ tag }}</td>
+                            <td>{{ modul }}</td>
+                            <td>{{ listeneintrag.arbeitszeit }}</td>
+                            <td>{{ listeneintrag.bericht }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </table>
+        <p>hallo welt</p>
+
+    
 <!-- Footer -->
         <footer>
             <p>&copy All Rights Reserved by Jan Scheffelmeier</p>
