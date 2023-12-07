@@ -1,12 +1,12 @@
-{% load static %}
+<!-- {% load static %} --> <!--Wird nur für Server benötigt-->
 <!DOCTYPE html>
 <html lang="de">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, inital-scale=1.0">
         <title>Projekt Zeiterfassung</title>
-        <link rel="icon" type="image/png" href="./favicon.png">
-        <link rel="stylesheet" href="{% static '/styles.css' %}">
+        <link rel="icon" type="image/png" href="./favicon.png"> <!--<link rel="icon" type="image/png" href="{% static '/favicon.png' %}">--> <!--Wird nur für Server benötigt-->
+        <link rel="stylesheet" href="./styles.css"> <!--<link rel="stylesheet" href="{% static '/styles.css' %}">--> <!--Wird nur für Server benötigt-->
         <script type="text/javascript">
             /* Hier kann javascript geschrieben werden */
         </script>
@@ -20,66 +20,73 @@
         <header style="align-items: left;">  
             <!--Seitenlogo-->
             <div>
-                <img class="logo" src="{% static 'logo.png' %}">           
+                <img class="logo" src="./logo.png"> <!--<img class="logo" src="{% static 'logo.png' %}">--> <!--Wird nur für Server benötigt-->       
             </div>
             <div class="navigation" style="position: sticky; top: 0;">
                 <ul>
                   <li><a href="./index.html">Startseite</a></li>
-                  <li><a href="./sites/project.html">Projektunterlagen</a></li> 
-                  <li class="dropdown"><a href="javascript:void(0)" class="dropdown_headline">Coachings</a>
+                  <li><a href="./sites/project.html">Buchungen durchführen</a></li> 
+                  <li class="dropdown"><a href="javascript:void(0)" class="dropdown_headline">Verwaltung</a>
                     <div class="dropdown_content">
-                      <a href="./sites/tdd.html">Modulgruppe 1: Technische Dimension der Digitalisierung (Paulin)</a>
-                      <a href="./sites/management.html">Modulgruppe 2: Verwaltungsmanagement (Schenk)</a>
-                      <a href="./sites/rights.html">Modulgruppe 3: Rechtliche Grundlagen der öffentlichen Verwaltung (Klink-Straub)</a>
-                      <a href="./sites/leadership.html">Modulgruppe 4: Digital Leadership (Schneider)</a>
+                      <a href="./sites/tdd.html">Download / Upload</a>
+                      <a href="./sites/management.html">Als VIP-Anwender bewerben</a>
+                      <a href="./sites/rights.html">Kommt noch ...</a>
+                      <a href="./sites/leadership.html">LOGOUT</a>
                     </div>
                   </li>                
                 </ul>
               </div>
         </header>
 <!-- Middle -->
-        <form method="post">
-            {% csrf_token %}
-            <select>
-                <option name="filterTag">Alle Tage</option>
-                {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}
-                    <option name="filterTag">{{ tag }}</option>    
-                {% endfor %}
-            </select>
-            <select>
-                <option name="filterModul">Alle Module</option>
-                {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}
-                    {% for modul, listeMitDict in dictMitKeyModuleUndWertListe.items %}
-                        <option name="filterModul">{{ modul }}</option>
-                    {% endfor %}
-                {% endfor %}
-            </select>
-            <button type="submit">Filtern</button>
-        {% csrf_token %}
-        </form>
-        <table style="border: 2px solid black; margin: 50px">
-            <tr style="border: 2px solid black">
-                <th>Datum</th>
-                <th>Modul</th>
-                <th>Arbeitszeit</th>
-                <th>Bericht</th>
-            </tr>
-            {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}
-                {% for modul, listeMitDict in dictMitKeyModuleUndWertListe.items %}
-                    {% for listeneintrag in listeMitDict %}
-                        <tr style="border: 2px solid black">
-                            <td>{{ tag }}</td>
-                            <td>{{ modul }}</td>
-                            <td>{{ listeneintrag.arbeitszeit }}</td>
-                            <td>{{ listeneintrag.bericht }}</td>
-                        </tr>
-                    {% endfor %}
-                {% endfor %}
-            {% endfor %}
-        </table>
-        <p>hallo welt</p>
-
-    
+        <div>
+        </div>
+        <div style="text-align: center;">    
+            <form method="post" class="filtern">
+                <!--{% csrf_token %}--> <!--Wird nur für Server benötigt-->
+                <label for="nachTagenFiltern">Nach Tagen filtern: </label>
+                <select id="nachTagenFiltern">
+                    <option name="filterTag">Alle Tage</option>
+                    <!--{% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}--> <!--Wird nur für Server benötigt-->    
+                    <option name="filterTag">{{ tag }}</option>   
+                    <!--{% endfor %}--> <!--Wird nur für Server benötigt-->
+                </select>
+                <label for="nachModulFiltern">Nach Modul filtern: </label>
+                <select id="nachModulFiltern">
+                    <option name="filterModul">Alle Module</option>
+                    <!--{% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}--> <!--Wird nur für Server benötigt-->
+                        <!--{% for modul, listeMitDict in dictMitKeyModuleUndWertListe.items %}--> <!--Wird nur für Server benötigt-->
+                            <option name="filterModul">{{ modul }}</option>
+                        <!--{% endfor %}--> <!--Wird nur für Server benötigt-->
+                    <!--{% endfor %}--> <!--Wird nur für Server benötigt-->
+                </select>
+                <button type="submit" class="filterButton">Filtern</button>
+            <!--{% csrf_token %}--> <!--Wird nur für Server benötigt-->
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Modul</th>
+                        <th>Arbeitszeit</th>
+                        <th style="width: 50%;">Bericht</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <!--{% for tag, dictMitKeyModuleUndWertListe in zeiten.items %}--> <!--Wird nur für Server benötigt-->
+                    <!--{% for modul, listeMitDict in dictMitKeyModuleUndWertListe.items %}--> <!--Wird nur für Server benötigt-->
+                        <!--{% for listeneintrag in listeMitDict %}--> <!--Wird nur für Server benötigt-->
+                            <tr>
+                                <td>{{ tag }}</td>
+                                <td>{{ modul }}</td>
+                                <td>{{ listeneintrag.arbeitszeit }}</td>
+                                <td>{{ listeneintrag.bericht }}</td>
+                                <td><button type="submit" class="button">Löschen</button></td>
+                            </tr>
+                        <!--{% endfor %}--> <!--Wird nur für Server benötigt-->
+                    <!--{% endfor %}--> <!--Wird nur für Server benötigt-->
+                <!--{% endfor %}--> <!--Wird nur für Server benötigt-->
+            </table>
+        </div>    
 <!-- Footer -->
         <footer>
             <p>&copy All Rights Reserved by Jan Scheffelmeier</p>

@@ -9,7 +9,7 @@ body {
     color: black;
 }
 .logo {
-    margin-left: 10px;
+    padding-left: 20px;
     width: 100%;
     height: 150px;
     object-fit: scale-down;
@@ -171,6 +171,54 @@ dialog::backdrop {
     margin-left: auto;
     margin-right: auto;
     width: 70vw;
+}
+.filtern{
+    width: 100%;
+    font-size: 20px;
+    display: inline-block;
+    padding: 20px;
+}
+select{
+    font-size: 20px;
+}
+label{
+    padding: 20px;
+}
+.filterButton{
+    background-color:#013B75;
+    font-size: 20px;
+    color: aliceblue;
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+    margin-left: 50px;
+}
+table{
+    background-color: #0180ff;
+    font-size: 20px;
+    width: 98%;
+    margin: auto;
+    border-collapse: collapse;
+    border-radius: 20px;
+}
+td, th{
+    text-align: left;
+    padding: 10px 20px;
+}
+thead{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;;
+    background-color: #013B75;
+    color: white;
+}
+th:first-child{
+   border-radius: 20px 0 0 0; 
+}
+th:last-child{
+    border-radius: 0 20px 0 0; 
+ }
+tr:nth-child(even){
+    background-color: #84bef8;
+
 }
 footer{
     font-size: 15px;
