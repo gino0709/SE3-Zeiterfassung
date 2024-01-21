@@ -1,0 +1,119 @@
+{% load static %} <!--Wird nur für Server benötigt-->
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0">
+        <title>Projekt Zeiterfassung</title>
+        <link rel="icon" type="image/png" href="{% static '/favicon.png' %}"> <!--Wird nur für Server benötigt-->
+        <link rel="stylesheet" href="{% static '/styles.css' %}"> <!--Wird nur für Server benötigt-->
+        <script type="text/javascript">
+            /* Hier kann javascript geschrieben werden */
+        </script>
+    </head>
+    <body>
+<!-- Header -->
+        <header style="align-items: left;">  
+            <!--Seitenlogo-->
+            <div>
+                <img class="logo" src="{% static 'logo.png' %}"> <!--Wird nur für Server benötigt-->       
+            </div>
+            <div class="navigation" style="position: sticky; top: 0;">
+                <ul>
+                  <li><a onclick="dialogBuchung.showModal(); dialog.close()" class="buttonNav">Buchungen durchführen</a></li>
+                        <form method="post">
+                            {% csrf_token %} 
+                            <li><button type="submit" name="abschicken" value="uebersicht" class="buttonNav">Übersicht</button></li>
+                            <li><button type="submit" name="abschicken" value="vipAnfrage" class="buttonNav">Als VIP-Anwender bewerben</button></li>
+                            <li><button type="submit" name="abschicken" value="logout" class="buttonNav">Logout</button></li>
+                        </form>
+                </ul>
+              </div>
+        </header>
+            <!--Das Fenster um das "Buchungsfenster" zu öffnen-->
+            <dialog id="dialogBuchung">
+                <div class="dialog_header">
+                    <p class="closing_x" onclick="dialogBuchung.close()">&#10006</p>
+                    <h2>Buchung</h2>
+                </div>        
+                <form style="font-size: 25px; padding: 5px; text-align: center;" method="POST">
+                    {% csrf_token %} 
+                    <br><h3 style="color: #013B75">Hier können Sie Zeiten neu erfassen.</h3><br>
+                    <p style="padding: 5px;">Zeiterfassung deiner Projekte</p><br>
+                    <input class="input_area" type="date" placeholder="Datum" name="user_date">
+                    <select name="auswahlModul">
+                        {% for aModul in module %} <!--Wird nur für Server benötigt-->
+                            <option value="{{ aModul }}">{{ aModul }}</option>
+                        {% endfor %} <!--Wird nur für Server benötigt-->
+                    </select>
+                    <input class="input_area" type="datetime" placeholder="Beginn" name="user_start">
+                    <input class="input_area" type="datetime" placeholder="Ende" name="user_ende">
+                    <textarea class="input_area" placeholder="Bericht" name="user_bericht"></textarea>
+                    <button class="button_bestätigung" type="submit" name="abschicken" value="buchen">Buchen</button>
+                </form>
+            </dialog>
+<!-- FILTERN -->
+        <div style="text-align: center;">    
+            <form method="post" class="filtern">
+            {% csrf_token %} <!--Wird nur für Server benötigt-->
+                <label for="nachTagenFiltern">Nach Tagen filtern: </label>
+                <select id="nachTagenFiltern" name="filterTag">
+                    <option name="filterTag">Alle Tage</option>
+                    {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %} <!--Wird nur für Server benötigt-->    
+                    <option name="filterTag">{{ tag }}</option>   
+                    {% endfor %} <!--Wird nur für Server benötigt-->
+                </select>
+                <label for="nachModulFiltern">Nach Modul filtern: </label>
+                <select id="nachModulFiltern" name="filterModul">
+                    <option>Alle Module</option>
+                    {% for aModul in module %} <!--Wird nur für Server benötigt-->
+                    <option value="{{ aModul }}">{{ aModul }}</option>
+                    {% endfor %} <!--Wird nur für Server benötigt-->
+                </select>
+                <button type="submit" class="filterButton" name="abschicken" value="filtern">Filtern</button>
+            {% csrf_token %} <!--Wird nur für Server benötigt-->
+            </form>
+<!-- AKTUALISIEREN 
+            <form method="post">
+                {% csrf_token %}
+                <button class="button" type="submit" name="abschicken" value="aktualisieren">Buchungen aktualisieren</button>
+                {% csrf_token %}
+            </form> -->
+<!-- ÜBERSICHTSTABELLE -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Modul</th>
+                        <th>Arbeitszeit (in min)</th>
+                        <th style="width: 50%;">Bericht</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                {% for tag, dictMitKeyModuleUndWertListe in zeiten.items %} <!--Wird nur für Server benötigt-->
+                    {% for modul, listeMitDict in dictMitKeyModuleUndWertListe.items %} <!--Wird nur für Server benötigt-->
+                        {% for listeneintrag in listeMitDict %} <!--Wird nur für Server benötigt-->
+                            <tr>
+                                <form method="post" id="idTest">
+                                    {% csrf_token %}
+                                    <td>{{ tag }}</td><input type="hidden" value="{{ tag }}" name="loeschTag">
+                                    <td>{{ modul }}</td><input type="hidden" value="{{ modul }}" name="loeschModul">
+                                    <td>{{ listeneintrag.arbeitszeit }}</td><input type="hidden" value="{{ arbeitszeit }}" name="loeschArbeitszeit">
+                                    <td>{{ listeneintrag.bericht }}</td><input type="hidden" value="{{ bericht }}" name="loeschBericht">
+                                    <td><button formmethod="post" class="button" type="submit" name="abschicken" value="loeschen">Löschen</button></td>
+                                    {% csrf_token %}
+                                </form>
+                            </tr>
+                        {% endfor %} <!--Wird nur für Server benötigt-->
+                    {% endfor %} <!--Wird nur für Server benötigt-->
+                {% endfor %} <!--Wird nur für Server benötigt-->
+            </table>
+        </div>    
+<!-- Footer -->
+        <p>Startseite Anwender</p>
+        <footer>
+            <p>&copy All Rights Reserved by Jan Scheffelmeier</p>
+            <p>Kontaktieren Sie mich unter: <a style="color: aliceblue" href="mailto:scheffelmeier_jan@teams.hs-ludwigsburg.de">Scheffelmeier_Jan@teams.hs-ludwigsburg.de</a></p>
+        </footer>
+    </body>
+</html>

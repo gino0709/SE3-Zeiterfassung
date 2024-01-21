@@ -1,0 +1,68 @@
+{% load static %}
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static '/styles.css' %}">
+        <title>-Zeiterfassung-</title>
+    </head>
+    <body>
+<!-- Header -->
+        <header>
+            <div class="header-container">
+                <h1>SE III - Zeiterfassungssystem</h1>
+                <div class="account-info">
+                    <p>E-Mail: example@mail.com</p>
+                    <select>
+                        <option style="display: none;"></option>
+                        <option value="konto">Kontoinformationen</option> <!-- Hier muss eine Verlinkung noch rein -->
+                        <option value="logout">Abmelden</option> <!-- Hier muss eine Verlinkung noch rein -->
+                    </select>
+                </div>
+            </div>
+        </header>
+<!-- Navbar -->
+        <nav>
+            <ul>
+                <li><a href="http://193.196.55.232:8888/newApp/Startseite/">Startseite - Übersicht</a></li>
+                <li><a href="http://193.196.55.232:8888/newApp/Buchung/">Neue Buchung</a></li>
+            </ul>
+        </nav>
+<!-- Middle -->
+        <div class="content-container">
+            <table>
+                <tr>
+                    <td><label for="select1">Modul:</label></td>
+                    <td><select id="select1">
+                        <option value="Inf II">Inf II</option>
+                        <option value="SE III">SE III</option>
+                        <option value="Sys I">Sys I</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label for="datum">Datum:</label></td>
+                    <td><input type="date" id="datum" required></td>
+                </tr>
+                <tr>
+                    <td><label for="beginn">Beginn:</label></td>
+                    <td><input type="datetime" id="beginn" required></td>
+                </tr>
+                <tr>
+                    <td><label for="arbeitszeit">Ende:</label></td>
+                    <td><input type="datetime" id="beginn" required></td>
+                </tr>
+                <tr>
+                    <td><label for="bericht">Kurzbericht:</label></td>
+                    <td><textarea id="bericht" style="width: 400px;" required></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="submit">
+                        <input type="reset" value="reset">
+                    </td>
+                </tr>
+            </table>               
+        </div>
+    </body>
+</html>

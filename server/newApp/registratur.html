@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0">
+        <title>Projekt Zeiterfassung</title>
+        <link rel="icon" type="image/png" href="{% static '/favicon.png' %}">
+        <link rel="stylesheet" href="{% static '/styles.css' %}">
+        <script type="text/javascript">
+            /* Hier kann javascript geschrieben werden */
+        </script>
+     </head>
+    <body>
+<!-- Header -->
+        <header style="align-items: left; display: initial;">  
+            <!--Seitenlogo-->
+            <div>
+                <img class="logo" src="{% static 'logo.png' %}">            
+            </div>
+            <div style="position: sticky; top: 0;">
+                <div class="anmeldung" style="float: left">
+                    <form method="post">
+                        {% csrf_token %}        
+                        <label for="Amail">Email: </label>
+                        <input name="Amail" type="email"/>
+                        <label for="pw">Passwort: </label>
+                        <input name="pw" type="password"/>
+                        <button class="button" type="submit" name="bestätigen" value="anmelden">Anmelden</button>
+                    </form>              
+                </div>
+                <div class="anmeldung" style="float: left">
+                    <p>Sie sind noch nicht angemeldet?   <span onclick="dialogregistrierung.showModal(); dialog.close()" style="color: red;"><b>HIER</b></span> jetzt kostenlos registrieren und direkt loslegen!</p>
+                </div>
+            </div>
+        </header>
+    <!--Das Fenster zur Registrierung wird geöffnet-->
+        <dialog id="dialogregistrierung">
+            <div class="dialog_header">
+                <p class="closing_x" onclick="dialogregistrierung.close()">&#10006</p>
+                <h2>Registrierung</h2>
+            </div>        
+            <form style="font-size: 25px; padding: 5px; text-align: center;" method="POST">
+                {% csrf_token %} 
+                <br><h3 style="color: #013B75">Willkommen beim Projekt Zeiterfassung</h3><br>
+                <p style="padding: 5px;">Registriere dich und beginne direkt mit der Zeiterfassung deiner Projekte</p><br>
+                <input class="input_area" type="email" placeholder="E-Mail-Adresse" name="Rmail">
+                <input class="input_area" type="password" placeholder="Passwort eingeben" name="pw">
+                <input class="input_area" type="password" placeholder="Passwort wiederholen" name="pwBestätigen">
+                <button class="button_bestätigung" type="submit" name="bestätigen" value="registrieren">Registrieren</button>
+            </form>
+            <p style="margin: 10px 0 5px 0; padding: 10px">Du hast ein Konto? <span onclick="dialogregistrierung.close(); dialog.showModal()" style="color: red;"><b>Melde dich an</b></span></p>
+        </dialog>
+<!-- Middle -->
+        <div class="text_content_center">
+        <p>Herzlich Willkommen auf unserer Website</p><br>
+        <h2>Projekt Zeiterfassung</h2><br>
+        <p class="align_left">Auf dieser Seite stelle ich Ihnen die Ergebnisse zu meiner ersten Fallstudie im Modul "6.1 - Fallstudien" 
+          im 2. Semester des Studiengangs "BA - Digitales Verwaltungsmanagement" der Hochschule für öffentliche Verwaltung und Finanzen Ludwigsburg vor.
+          Die Ergebnisse der folgende Aufgaben sollten auf einer Webseite erstellt und veröffentlicht werden.<br><br><br>
+          Die Aufgaben lauten:</p><br>
+          <ul class="align_left">
+            <li>Durchführung eines Digitalisierungsprojekt im Rahmen einer Praxisphase bei seiner jeweiligen Praxisstelle.</li>
+            <li>Ausarbeitung eines Fallstudienberichts mit folgenden Inhalten:
+              <ul>
+                <li>Projektunterlagen
+                  <ul>
+                    <li>Projektauftrag</li>
+                    <li>Projektanlagen</li>
+                  </ul>
+                </li>
+                <li>Coachings
+                  <ul>
+                    <li>Modulgruppe 1: Technische Dimension der Digitalisierung</li>
+                    <li>Modulgruppe 2: Verwaltungsmanagement</li>
+                    <li>Modulgruppe 3: Rechtliche Grundlagen der öffentlichen Verwaltung</li>
+                    <li>Modulgruppe 4: Digital Leadership</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul><br>
+        <p style="font-size: 25px;">Mit freundlichen Grüßen</p><br>
+        <p style="font-size: 45px;">Gino Scheuermann, Jan Scheffelmeier & Schulamith Käppeler</p>
+    </div>
+<!-- Footer -->
+        <footer>
+            <p>&copy All Rights Reserved by Jan Scheffelmeier</p>
+            <p>Kontaktieren Sie mich unter: <a style="color: aliceblue" href="mailto:scheffelmeier_jan@teams.hs-ludwigsburg.de">Scheffelmeier_Jan@teams.hs-ludwigsburg.de</a></p>
+        </footer>
+    </body>
+</html>
