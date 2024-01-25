@@ -1,0 +1,79 @@
+{% load static %} <!--Wird nur für Server benötigt-->
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0">
+        <title>Projekt Zeiterfassung</title>
+        <link rel="icon" type="image/png" href="{% static '/favicon.png' %}"> <!--Wird nur für Server benötigt-->
+        <link rel="stylesheet" href="{% static '/styles.css' %}"> <!--Wird nur für Server benötigt-->
+        <script type="text/javascript">
+            /* Hier kann javascript geschrieben werden */
+        </script>
+    </head>
+    <body>
+<!-- Header -->
+        <header style="align-items: left;">  
+            <!--Seitenlogo-->
+            <div>
+                <img class="logo" src="{% static 'logo.png' %}"> <!--Wird nur für Server benötigt-->       
+            </div>
+            <div class="navigation" style="position: sticky; top: 0;">
+                <ul>
+                  <li><button class="buttonNav" onclick="window.location.href='http://193.196.55.232:8888/newApp/Startseite/'">Zurück</button></li>
+                </ul>
+            </div>
+       </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Vip-Anfragen</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for anfrage in nutzeranfragenVip %} <!--Wird nur für Server benötigt-->
+                        <tr>
+                            <form method="post" id="idTest">
+                                {% csrf_token %}
+                                <td>{{ anfrage }}</td><input type="hidden" value="{{ anfrage }}" name="anfrageMail">
+                                <td><button formmethod="post" class="button" type="submit" name="abschicken" value="genehmigen">Genehmigen</button></td>
+                                <td><button formmethod="post" class="button" type="submit" name="abschicken" value="ablehnen">Ablehnen</button></td>
+                                {% csrf_token %}
+                            </form>
+                        </tr>
+            {% endfor %} <!--Wird nur für Server benötigt-->
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Admin-Anfragen</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for anfrage in nutzeranfragenAdmin %} <!--Wird nur für Server benötigt-->
+                        <tr>
+                            <form method="post" id="idTest">
+                                {% csrf_token %}
+                                <td>{{ anfrage }}</td><input type="hidden" value="{{ anfrage }}" name="anfrageMail">
+                                <td><button formmethod="post" class="button" type="submit" name="abschicken" value="genehmigen">Genehmigen</button></td>
+                                <td><button formmethod="post" class="button" type="submit" name="abschicken" value="ablehnen">Ablehnen</button></td>
+                                {% csrf_token %}
+                            </form>
+                        </tr>
+            {% endfor %} <!--Wird nur für Server benötigt-->
+        </table>
+
+
+
+
+
+<!-- Footer -->
+        <p>ANFRAGEN</p>
+        <footer>
+            <p>&copy All Rights Reserved by Jan Scheffelmeier</p>
+            <p>Kontaktieren Sie mich unter: <a style="color: aliceblue" href="mailto:scheffelmeier_jan@teams.hs-ludwigsburg.de">Scheffelmeier_Jan@teams.hs-ludwigsburg.de</a></p>
+        </footer>
+    </body>
+</html>

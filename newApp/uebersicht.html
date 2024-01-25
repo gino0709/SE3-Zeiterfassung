@@ -1,0 +1,60 @@
+ <!--Wird nur für Server benötigt-->
+ <!DOCTYPE html>
+ <html lang="de">
+     <head>
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, inital-scale=1.0">
+         <title>Projekt Zeiterfassung</title>
+         <link rel="icon" type="image/png" href="/static/favicon.png"> <!--Wird nur für Server benötigt-->
+         <link rel="stylesheet" href="/static/styles.css"> <!--Wird nur für Server benötigt-->
+         <script type="text/javascript">
+             /* Hier kann javascript geschrieben werden */
+         </script>
+     </head>
+     <body>
+ <!-- Header -->
+         <header style="align-items: left;">  
+             <!--Seitenlogo-->
+             <div>
+                <img class="logo" src="/static/logo.png"> <!--Wird nur für Server benötigt-->       
+             </div>
+             <div class="navigation" style="position: sticky; top: 0;">
+                 <ul>
+                   <li><button class="buttonNav" onclick="window.history.back()">Zurück</button></li>
+                   <li><button class="buttonNav" onclick="window.print()">Drucken</button></li>
+                 </ul>
+             </div>
+         </header>
+ <!-- ÜBERSICHTSTABELLE -->
+             <table>
+                <thead>
+                    <tr>
+                        <th>Modul</th>
+                        <th>Anzahl Minuten</th>
+                        <th>in Prozent</th>
+                    </tr>
+                </thead>
+                {% for modul, daten in output.items %} <!--Wird nur für Server benötigt-->
+                    <tr>
+                        <td>{{ modul }}</td>
+                        <td>{{ daten.Minuten }}</td>
+                        <td>{{ daten.Prozente }}</td>
+                    </tr>
+                {% endfor %} <!--Wird nur für Server benötigt-->
+             </table>
+         <div class="print_content">
+            <h1>Übersichtsbericht</h1>
+            <p> Der/Die Nutzer/in "{{ mailCookie }}" hat folgende Arbeiten erledigt:</p>
+            <ul>
+                {% for modul, daten in output.items %} <!--Wird nur für Server benötigt-->
+                    <li>In Modul {{ modul }} hat er/sie {{ daten.Minuten }} Minuten gearbeitet, dies entspricht {{ daten.Prozente }} % der gesamten Arbeitszeit.</li>
+                {% endfor %}
+            </ul>
+         </div>  
+ <!-- Footer -->
+         <footer>
+             <p>&copy All Rights Reserved by Jan Scheffelmeier</p>
+             <p>Kontaktieren Sie mich unter: <a style="color: aliceblue" href="mailto:scheffelmeier_jan@teams.hs-ludwigsburg.de">Scheffelmeier_Jan@teams.hs-ludwigsburg.de</a></p>
+         </footer>
+     </body>
+ </html>
